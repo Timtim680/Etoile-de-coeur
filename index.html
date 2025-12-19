@@ -1,395 +1,322 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hommage a Timothy – Pour Toujours</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etoile de Coeur</title>
+    <!-- Police Satisfy -->
+    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg-color: #FFD700; /* jaune foncé */
+            --text-color: #ADD8E6; /* bleu clair */
+            --card-bg: #B0E0E6; /* bleu clair cartes */
+            --card-text: #00008B; /* bleu foncé écriture cartes */
+        }
 
-<!-- Police Satisfy -->
-<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+        body{
+            margin:0;
+            font-family:'Satisfy', cursive;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
 
-<style>
-:root {
-    --bg: #f5c71a;        /* fond jaune foncé */
-    --text: #00008b;      /* texte bleu foncé */
-    --card: rgba(173,216,230,0.3); /* fond cartes bleu clair transparent */
-}
+        header{
+            background:#FFA500;
+            padding:20px;
+            text-align:center;
+            font-size:2em;
+            position:sticky;
+            top:0;
+            z-index:100;
+        }
 
-/* GLOBAL */
-body {
-    margin: 0;
-    font-family: 'Satisfy', cursive;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
-}
+        nav{
+            display:flex;
+            justify-content:center;
+            gap:15px;
+            margin-bottom:20px;
+        }
 
-/* ANIMATIONS DE FONDU */
-.fadeIn {
-    opacity: 0;
-    animation: fadeIn 1s forwards;
-}
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
+        nav button{
+            padding:10px 15px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            background:#ADD8E6;
+            color:#00008B;
+            font-weight:bold;
+        }
 
-/* NAVIGATION */
-nav {
-    text-align: center;
-    padding: 15px;
-    position: sticky;
-    top: 0;
-    background: rgba(245,236,213,0.9);
-    backdrop-filter: blur(4px);
-    z-index: 100;
-}
-nav a {
-    color: var(--text);
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 1.3em;
-    transition: 0.3s;
-}
-nav a:hover {
-    text-shadow: 0 0 10px var(--text);
-}
-#langueSelect {
-    margin-left: 20px;
-    padding: 5px;
-    border-radius: 5px;
-    font-family: inherit;
-    font-size: 1em;
-}
+        section{
+            padding:20px;
+            max-width:900px;
+            margin:0 auto 40px;
+        }
 
-/* SECTIONS */
-section {
-    padding: 80px 20px;
-    max-width: 1000px;
-    margin: 40px auto;
-    background: var(--card);
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-}
+        .carte{
+            background: var(--card-bg);
+            color: var(--card-text);
+            padding:20px;
+            border-radius:15px;
+            box-shadow:2px 2px 10px rgba(0,0,0,0.2);
+            margin-bottom:30px;
+        }
 
-/* GALERIE */
-.galerie img {
-    width: 30%;
-    border-radius: 15px;
-    margin: 10px;
-    transition: 0.3s;
-    cursor: pointer;
-}
-.galerie img:hover {
-    transform: scale(1.05) rotate(1deg);
-}
+        /* Galerie */
+        .galerie{
+            display:grid;
+            grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+            gap:10px;
+        }
 
-/* LIVRE D OR */
-#livreForm input,
-#livreForm textarea {
-    width: 95%;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 12px;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 1em;
-}
-#livreForm button {
-    padding: 12px 25px;
-    border: none;
-    background: var(--text);
-    color: var(--bg);
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1em;
-}
-.message {
-    background: rgba(173,216,230,0.2);
-    padding: 18px;
-    border-radius: 12px;
-    margin-bottom: 18px;
-    line-height: 1.5em;
-}
+        .galerie img{
+            width:100%;
+            border-radius:10px;
+        }
 
-/* CONTACT */
-form input, form textarea {
-    width: 95%;
-    padding: 12px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: none;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 1em;
-}
-form button {
-    padding: 12px 25px;
-    border: none;
-    background: var(--text);
-    color: var(--bg);
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1em;
-}
+        /* Musique */
+        audio{
+            width:100%;
+            margin-top:10px;
+            border-radius:10px;
+        }
 
-/* MOBILE */
-@media (max-width: 800px) {
-    .galerie img {
-        width: 90%;
-    }
-    nav a {
-        display: block;
-        margin: 10px 0;
-    }
-}
-</style>
+        /* Livre d or et avis */
+        #star-rating{
+            font-size:35px;
+            cursor:pointer;
+            margin-bottom:10px;
+        }
+
+        .star{
+            color:gray;
+            transition:0.3s;
+        }
+
+        .star:hover{
+            transform:scale(1.2);
+            color:gold;
+        }
+
+        #commentaires textarea{
+            width:100%;
+            padding:10px;
+            border-radius:8px;
+            border:1px solid #aaa;
+            font-size:16px;
+            margin-top:10px;
+        }
+
+        #send-comment{
+            margin-top:10px;
+            padding:10px 20px;
+            font-size:16px;
+            background:#0066ff;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        #comment-list .comment{
+            background:#eef6ff;
+            padding:12px;
+            border-radius:8px;
+            margin-bottom:10px;
+            border-left:5px solid #0066ff;
+            color:#00008B;
+        }
+
+        /* Contact */
+        #contact input,#contact textarea{
+            width:100%;
+            padding:10px;
+            margin-bottom:10px;
+            border-radius:8px;
+            border:1px solid #aaa;
+        }
+
+        #contact button{
+            padding:10px 20px;
+            background:#0066ff;
+            color:white;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+        }
+
+        /* Animation simple */
+        .fadeIn{
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn{
+            from{opacity:0;}
+            to{opacity:1;}
+        }
+
+        /* Menu langues */
+        .langue{
+            display:flex;
+            justify-content:flex-end;
+            gap:10px;
+            margin-bottom:10px;
+        }
+
+        /* Responsive */
+        @media(max-width:600px){
+            header{
+                font-size:1.5em;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-    <a href="#accueil">Accueil</a>
-    <a href="#histoire">Histoire</a>
-    <a href="#souvenirs">Souvenirs</a>
-    <a href="#galerie">Galerie</a>
-    <a href="#musique">Chanson</a>
-    <a href="#livredor">Livre d or</a>
-    <a href="#contact">Contact</a>
+<header>Etoile de Coeur</header>
 
-    <!-- Sélecteur de langue -->
-    <select id="langueSelect">
-        <option value="fr">Francais</option>
-        <option value="en">English</option>
-    </select>
-</nav>
+<div class="langue">
+    <button onclick="showFR()">FR</button>
+    <button onclick="showEN()">EN</button>
+</div>
 
-<!-- CONTENU FRANÇAIS -->
-<div class="langue" id="fr">
-
-<section id="accueil-fr" class="fadeIn">
-    <h1>Hommage a Timothy</h1>
-    <p>Bienvenue sur ce site dedie a Timothy, mon petit frere de coeur.</p>
+<!-- PAGE D ACCUEIL -->
+<section id="accueil" class="carte fadeIn" data-fr="Bienvenue sur le site hommage de mon petit frere de coeur, Timothy. Ce site est un hommage pour lui, pour se souvenir et partager son histoire."
+        data-en="Welcome to the tribute site of my little heart brother, Timothy. This site is a tribute to him, to remember and share his story.">
+    <p id="accueil-text"></p>
 </section>
 
-<section id="histoire-fr" class="fadeIn">
-    <h2>Mon recit, Histoire et Paroles</h2>
-    <p>Je veux vous raconter Timothy Mon petit frere de coeur que j ai rencontre sur Snapchat.</p>
-    <p>Timothy avait 11 ans. Derriere son sourire, il cachait beaucoup de souffrances :</p>
-    <ul>
-        <li>Harcelement scolaire</li>
-        <li>Violences a la maison</li>
-        <li>Solitude et incomprehension</li>
-    </ul>
-    <p>Le 28 octobre 2023 il s est suicider devant mes yeux. Mais je veux raconter son histoire pour qu il vive encore a travers moi.</p>
-    <h3>Paroles inspirees de notre histoire</h3>
-    <p><i>
-        Petit frere, je te parle encore,  
-        Meme si tu n es plus la.  
-        Chaque rire, chaque mot, chaque aurore,  
-        Je sens ton coeur ici bas.
-    </i></p>
-</section>
-
-<section id="souvenirs-fr" class="fadeIn">
-    <h2>Souvenirs & Messages</h2>
-    <ul>
-        <li>Les rires quand il me racontait ses petites victoires</li>
-        <li>Nos longues discussions tard le soir</li>
-        <li>Ses petits messages pleins de tendresse</li>
-        <li>Ses secrets qu il me confiait</li>
-        <li>Chaque photo, chaque dessin qu il m envoyait</li>
-    </ul>
-</section>
-
-<section id="galerie-fr" class="fadeIn">
-    <h2>Galerie Photos</h2>
+<!-- GALERIE -->
+<section id="galerie" class="carte fadeIn">
+    <h2 data-fr="Galerie Photos" data-en="Photo Gallery">Galerie Photos</h2>
     <div class="galerie">
-        <img src="https://i.imgur.com/H86dKLc.jpeg" alt="Timothy">
-        <img src="https://i.imgur.com/KRMpOWb.jpeg" alt="Souvenir">
-        <img src="https://i.imgur.com/aEwN7u4.mp4" alt="">
-        <img src="https://i.imgur.com/o3RfgYY.jpeg" alt="">
+        <img src="https://i.imgur.com/xnsDgA4.jpeg" alt="Timothy">
+        <img src="https://i.imgur.com/pgjrTSV.jpeg" alt="Souvenir">
+        <img src="https://i.imgur.com/qAgXKgq.jpeg" alt="Photo 3">
+        <img src="https://i.imgur.com/KLN2J8A.jpeg" alt="Photo 4">
+        <img src="https://i.imgur.com/u6Wwwq9.jpeg" alt="Photo 5">
+
     </div>
 </section>
 
-<section id="musique-fr" class="fadeIn">
-    <h2>Sa chanson</h2>
+<!-- MUSIQUE + HISTOIRE -->
+<section id="musique" class="carte fadeIn">
+    <h2 data-fr="Sa musique & Histoire" data-en="His Music & Story">Sa musique & Histoire</h2>
     <audio controls autoplay loop>
-        <source src="timothy.mp3" type="audio/mpeg">
-        Votre navigateur ne supporte pas la lecture audio.
-    </audio>
-    <p>La chanson Pour toi, mon frere de coeur raconte l histoire de Timothy et tout ce qu il vivait.</p>
-</section>
-
-<section id="livredor-fr" class="fadeIn">
-    <h2>Livre d or</h2>
-    <div id="messages-fr"></div>
-    <form id="livreForm-fr">
-        <input type="text" id="nom-fr" placeholder="Votre nom" required>
-        <textarea id="texte-fr" placeholder="Votre message pour Timothy..." required></textarea>
-        <button type="submit">Envoyer</button>
-    </form>
-</section>
-
-<section id="contact-fr" class="fadeIn">
-    <h2>Contact</h2>
-    <form>
-        <input type="text" placeholder="Nom" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Message" required></textarea>
-        <button>Envoyer</button>
-    </form>
-</section>
-
-</div> <!-- FIN CONTENU FR -->
-
-<!-- CONTENU ANGLAIS -->
-<div class="langue" id="en" style="display:none;">
-
-<section id="accueil-en" class="fadeIn">
-    <h1>Tribute to Timothy</h1>
-    <p>Welcome to this site dedicated to Timothy, my little heart brother.</p>
-</section>
-
-<section id="histoire-en" class="fadeIn">
-    <h2>My Story, Words and Song</h2>
-    <p>I want to tell you about Timothy My little heart brother I met on Snapchat.</p>
-    <p>Timothy was 11. Behind his smile, he hid many struggles:</p>
-    <ul>
-        <li>School bullying</li>
-        <li>Domestic violence</li>
-        <li>Loneliness and incomprehension</li>
-    </ul>
-    <p>On October 28, 2023 he committed suicide. But I want to share his story so he continues to live through me.</p>
-    <h3>Lyrics inspired by our story</h3>
-    <p><i>
-        Little brother, I speak to you again,  
-        Even though you are no longer here.  
-        Every laugh, every word, every dawn,  
-        I feel your heart still here.
-    </i></p>
-</section>
-
-<section id="souvenirs-en" class="fadeIn">
-    <h2>Memories & Messages</h2>
-    <ul>
-        <li>The laughs when he told me his small victories</li>
-        <li>Our long late-night talks</li>
-        <li>His little messages full of tenderness</li>
-        <li>His secrets he confided to me</li>
-        <li>Every photo, every drawing he sent me</li>
-    </ul>
-</section>
-
-<section id="galerie-en" class="fadeIn">
-    <h2>Photo Gallery</h2>
-    <div class="galerie">
-           <img src="https://i.imgur.com/H86dKLc.jpeg" alt="Timothy">
-        <img src="https://i.imgur.com/KRMpOWb.jpeg" alt="Souvenir">
-        <img src="https://i.imgur.com/aEwN7u4.mp4" alt="">
-        <img src="https://i.imgur.com/o3RfgYY.jpeg" alt="">
-    </div>
-</section>
-
-<section id="musique-en" class="fadeIn">
-    <h2>His Song</h2>
-    <audio controls autoplay loop>
-        <source src="timothy.mp3" type="audio/mpeg">
+        <source src="https://www.dropbox.com/s/XXXXXXXXXXXX/timothy.mp3?raw=1" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <p>The song Pour toi, mon frere de coeur tells Timothy story and everything he went through.</p>
+
+    <h3 data-fr="Paroles et histoire racontee par moi" data-en="Lyrics & Story Told By Me">Paroles et histoire racontée par moi</h3>
+    <p id="histoire-text" data-fr="Je raconte l histoire de Timothy, mon petit frere de coeur. Nous nous sommes rencontrer sur Snapchat et avons cree un lien tres fort. Il a subi du harcelement scolaire et des violences parentales. Malgrer mon soutien, le 28 octobre 2023, il s est suicider a seulement 11 ans, devant moi. Cela fait maintenant 2 ans passer. Ce site est un hommage pour lui, pour ne jamais oublier sa lumiere et son sourire. Je partage ses paroles, ses souvenirs, et tout ce qu il representait pour moi."
+       data-en="I tell the story of Timothy, my little heart brother. We met on Snapchat and formed a very strong bond. He suffered from school bullying and parental violence. Despite my support, on October 28, 2023, he took his own life at only 11 years old, in front of me. It's been almost 2 years. This site is a tribute to him, to never forget his light and smile. I share his lyrics, memories, and everything he represented to me."></p>
 </section>
 
-<section id="livredor-en" class="fadeIn">
-    <h2>Guestbook</h2>
-    <div id="messages-en"></div>
-    <form id="livreForm-en">
-        <input type="text" id="nom-en" placeholder="Your Name" required>
-        <textarea id="texte-en" placeholder="Your message for Timothy..." required></textarea>
-        <button type="submit">Send</button>
-    </form>
+<!-- LIVRE D’OR + AVIS -->
+<section id="avis" class="carte fadeIn">
+
+
+    <div id="rating-section">
+        <div id="star-rating">
+            <span class="star" data-star="1">1</span>
+            <span class="star" data-star="2">2</span>
+            <span class="star" data-star="3">3</span>
+            <span class="star" data-star="4">4</span>
+            <span class="star" data-star="5">5</span>
+        </div>
+        <p id="rating-result"></p>
+    </div>
+
+    <div id="commentaires">
+        <textarea id="comment-input" placeholder="Votre message..." rows="4" data-fr="Votre message..." data-en="Your message..."></textarea>
+        <button id="send-comment" data-fr="Envoyer" data-en="Send">Envoyer</button>
+
+        <div id="comment-list"></div>
+    </div>
 </section>
 
-<section id="contact-en" class="fadeIn">
-    <h2>Contact</h2>
-    <form>
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Message" required></textarea>
-        <button>Send</button>
-    </form>
+<!-- FORMULAIRE CONTACT -->
+<section id="contact" class="carte fadeIn">
+    <h2 data-fr="Contact" data-en="Contact">Contact</h2>
+    <input type="text" placeholder="Votre nom" data-fr="Votre nom" data-en="Your name">
+    <input type="email" placeholder="Votre email" data-fr="Votre email" data-en="Your email">
+    <textarea rows="4" placeholder="Votre message" data-fr="Votre message" data-en="Your message"></textarea>
+    <button data-fr="Envoyer" data-en="Send">Envoyer</button>
 </section>
-
-</div> <!-- FIN CONTENU EN -->
 
 <script>
-/* SÉLECTEUR DE LANGUE */
-const langueSelect = document.getElementById("langueSelect");
-const frContent = document.getElementById("fr");
-const enContent = document.getElementById("en");
+/* ---- LANGUE MULTILINGUE ---- */
+function setLanguage(lang){
+    document.querySelectorAll("[data-fr]").forEach(el=>{
+        if(lang==="fr"){
+            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
+                el.placeholder=el.getAttribute("data-fr");
+            }else{
+                el.textContent=el.getAttribute("data-fr");
+            }
+        }else{
+            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
+                el.placeholder=el.getAttribute("data-en");
+            }else{
+                el.textContent=el.getAttribute("data-en");
+            }
+        }
+    });
+}
 
-langueSelect.addEventListener("change", () => {
-    if(langueSelect.value === "fr"){
-        frContent.style.display = "block";
-        enContent.style.display = "none";
-    } else {
-        frContent.style.display = "none";
-        enContent.style.display = "block";
+function showFR(){setLanguage("fr");}
+function showEN(){setLanguage("en");}
+
+// Initialisation en FR
+showFR();
+
+/* ---- ETOILES ---- */
+const stars=document.querySelectorAll(".star");
+const result=document.getElementById("rating-result");
+stars.forEach(star=>{
+    star.addEventListener("click",()=>{
+        let rating=star.getAttribute("data-star");
+        stars.forEach(s=>{
+            s.style.color=(s.getAttribute("data-star")<=rating)?"gold":"gray";
+        });
+
+        localStorage.setItem("avis-note",rating);
+    });
+});
+window.addEventListener("load",()=>{
+    const savedRating=localStorage.getItem("avis-note");
+    if(savedRating){
+        stars.forEach(s=>{
+            s.style.color=(s.getAttribute("data-star")<=savedRating)?"gold":"gray";
+        });
+
     }
 });
 
-/* LIVRE D’OR LOCALSTORAGE FR */
-const formFR = document.getElementById("livreForm-fr");
-const messagesFR = document.getElementById("messages-fr");
-
-function chargerMessagesFR() {
-    messagesFR.innerHTML = "";
-    let msgs = JSON.parse(localStorage.getItem("livredorFR") || "[]");
-    msgs.forEach(m => {
-        let box = document.createElement("div");
-        box.className = "message";
-        box.innerHTML = `<b>${m.nom}</b><br>${m.texte}`;
-        messagesFR.appendChild(box);
+/* ---- LIVRE D’OR ---- */
+const sendBtn=document.getElementById("send-comment");
+const commentInput=document.getElementById("comment-input");
+const commentList=document.getElementById("comment-list");
+let commentaires=JSON.parse(localStorage.getItem("avis-commentaires")||"[]");
+function afficherCommentaires(){
+    commentList.innerHTML="";
+    commentaires.forEach(txt=>{
+        const div=document.createElement("div");
+        div.className="comment";
+        div.textContent=txt;
+        commentList.prepend(div);
     });
 }
-formFR.addEventListener("submit", e => {
-    e.preventDefault();
-    let nom = document.getElementById("nom-fr").value;
-    let texte = document.getElementById("texte-fr").value;
-    let msgs = JSON.parse(localStorage.getItem("livredorFR") || "[]");
-    msgs.push({nom, texte});
-    localStorage.setItem("livredorFR", JSON.stringify(msgs));
-    formFR.reset();
-    chargerMessagesFR();
+afficherCommentaires();
+sendBtn.addEventListener("click",()=>{
+    const text=commentInput.value.trim();
+    if(text.length===0) return;
+    commentaires.push(text);
+    localStorage.setItem("avis-commentaires",JSON.stringify(commentaires));
+    afficherCommentaires();
+    commentInput.value="";
 });
-chargerMessagesFR();
-
-/* LIVRE D’OR LOCALSTORAGE EN */
-const formEN = document.getElementById("livreForm-en");
-const messagesEN = document.getElementById("messages-en");
-
-function chargerMessagesEN() {
-    messagesEN.innerHTML = "";
-    let msgs = JSON.parse(localStorage.getItem("livredorEN") || "[]");
-    msgs.forEach(m => {
-        let box = document.createElement("div");
-        box.className = "message";
-        box.innerHTML = `<b>${m.nom}</b><br>${m.texte}`;
-        messagesEN.appendChild(box);
-    });
-}
-formEN.addEventListener("submit", e => {
-    e.preventDefault();
-    let nom = document.getElementById("nom-en").value;
-    let texte = document.getElementById("texte-en").value;
-    let msgs = JSON.parse(localStorage.getItem("livredorEN") || "[]");
-    msgs.push({nom, texte});
-    localStorage.setItem("livredorEN", JSON.stringify(msgs));
-    formEN.reset();
-    chargerMessagesEN();
-});
-chargerMessagesEN();
 </script>
 
 </body>
