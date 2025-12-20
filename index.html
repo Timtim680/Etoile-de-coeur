@@ -16,7 +16,7 @@ rel="stylesheet">
 :root{
 --bg-color: #1A1A1A; /* noir clair */
 --text-color: #F5F7FF; /* blanc brillant*/
---card-bg: #0E1A2B; /* bleu nuit trÃ¨s foncÃ©*/
+--card-bg: #0E1A2B; /* bleu nuit très foncé*/
 --card-text: #FF3B3B; /* Rouge brillant*/
 }
 
@@ -34,7 +34,7 @@ overflow-x:hidden;
 }
 
 /* -------------------------
-FOND Ã‰TOILÃ‰ ANIMÃ‰
+FOND ÉTOILÉ ANIMÉ
 ------------------------- */
 #stars, #stars2, #stars3{
 position:fixed;
@@ -70,7 +70,7 @@ animation:moveStars 180s linear infinite;
 100% { transform:translateY(-800px); }
 }
 
-/* Ã‰toiles filantes */
+/* Étoiles filantes */
 .shooting-star{
 position:fixed;
 top:-10px;
@@ -103,7 +103,7 @@ color:#00008B;
 box-shadow:0 0 15px rgba(0,0,0,0.3);
 }
 
-/* SÃ©lecteur de langue */
+/* Sélecteur de langue */
 .langue{
 display:flex;
 justify-content:flex-end;
@@ -122,7 +122,7 @@ font-size:15px;
 font-weight:bold;
 }
 
-/* SECTIONS GÃ‰NÃ‰RALES */
+/* SECTIONS GÉNÉRALES */
 section{
 padding:20px;
 max-width:900px;
@@ -173,7 +173,7 @@ width:100%;
 margin-top:15px;
 }
 
-/* Livre dâ€™or */
+/* Livre d’or */
 #star-rating{
 font-size:35px;
 cursor:pointer;
@@ -241,11 +241,11 @@ font-size:18px;
 </head>
 <body>
 
-<!-- FOND Ã‰TOILÃ‰ -->
+<!-- FOND ÉTOILÉ -->
 <div id="stars"></div>
 <div id="stars2"></div>
 <div id="stars3"></div>
-<!-- Ã‰TOILES FILANTES -->
+<!-- ÉTOILES FILANTES -->
 <div class="shooting-star" style="left:5%; animation-delay:5s;"></div>
 <div class="shooting-star" style="left:-10%; animation-delay:7s;"></div>
 <div class="shooting-star" style="left:60%; animation-delay:9s;"></div>
@@ -274,6 +274,7 @@ font-size:18px;
 
 <nav>
   <a href="page2.html">STORY</a>
+  <--- Clique ici
 <nav>
 
 <!-- ACCUEIL -->
@@ -369,7 +370,7 @@ function showFR(){ setLanguage("fr"); }
 function showEN(){ setLanguage("en"); }
 showFR();
 
-/* ---------------------- AVIS Ã‰TOILES ---------------------- */
+/* ---------------------- AVIS ÉTOILES ---------------------- */
 const stars=document.querySelectorAll(".star");
 const result=document.getElementById("rating-result");
 stars.forEach(s=>{
@@ -421,12 +422,9 @@ input.value="";
 </script>
 
   <footer>
-Â© Alexis 2025 â€“ Tous droits rÃ©servÃ©s
+© Alexis 2025 – Tous droits réservés
 </footer>
   </script>
   
 </body>
 </html>
-
-
-
