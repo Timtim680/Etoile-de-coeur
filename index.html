@@ -1,323 +1,410 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etoile de Coeur</title>
-    <!-- Police Satisfy -->
-    <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
-    <style>
-        :root{
-            --bg-color: #FFD700; /* jaune foncé */
-            --text-color: #ADD8E6; /* bleu clair */
-            --card-bg: #B0E0E6; /* bleu clair cartes */
-            --card-text: #00008B; /* bleu foncé écriture cartes */
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Etoile de Coeur</title>
 
-        body{
-            margin:0;
-            font-family:'Satisfy', cursive;
-            background: var(--bg-color);
-            color: var(--text-color);
-        }
+<!-- Favicon -->
+<link rel="icon" type="https://i.imgur.com/VWLbQMU.png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="https://i.imgur.com/bRd5SdB.png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 
-        header{
-            background:#FFA500;
-            padding:20px;
-            text-align:center;
-            font-size:2em;
-            position:sticky;
-            top:0;
-            z-index:100;
-        }
+<!-- Police Satisfy -->
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
+rel="stylesheet">
 
-        nav{
-            display:flex;
-            justify-content:center;
-            gap:15px;
-            margin-bottom:20px;
-        }
+<style>
+:root{
+--bg-color: #1A1A1A; /* noir clair */
+--text-color: #FF3B3B; /* Rouge brillant*/
+--card-bg: #0E1A2B; /* bleu nuit très foncé*/
+--card-text: #F5F7FF; /* blanc brillant*/
+}
 
-        nav button{
-            padding:10px 15px;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-            background:#ADD8E6;
-            color:#00008B;
-            font-weight:bold;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        section{
-            padding:20px;
-            max-width:900px;
-            margin:0 auto 40px;
-        }
+body{
+font-family:'Satisfy', cursive;
+background: var(--bg-color);
+color: var(--text-color);
+overflow-x:hidden;
+}
 
-        .carte{
-            background: var(--card-bg);
-            color: var(--card-text);
-            padding:20px;
-            border-radius:15px;
-            box-shadow:2px 2px 10px rgba(0,0,0,0.2);
-            margin-bottom:30px;
-        }
+/* -------------------------
+FOND ÉTOILÉ ANIMÉ
+------------------------- */
+#stars, #stars2, #stars3{
+position:fixed;
+top:0;
+left:0;
+width:200%;
+height:200%;
+z-index:-10;
+background-repeat:repeat;
+background-size:contain;
+}
 
-        /* Galerie */
-        .galerie{
-            display:grid;
-            grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
-            gap:10px;
-        }
+#stars{
+background-image:radial-gradient(2px 2px at 50% 50%, white, transparent);
+opacity:0.60;
+animation:moveStars 60s linear infinite;
+}
 
-        .galerie img{
-            width:100%;
-            border-radius:10px;
-        }
+#stars2{
+background-image:radial-gradient(1.5px 1.5px at 50% 50%, #d7d7d7, transparent);
+opacity:0.45;
+animation:moveStars 120s linear infinite;
+}
 
-        /* Musique */
-        audio{
-            width:100%;
-            margin-top:10px;
-            border-radius:10px;
-        }
+#stars3{
+background-image:radial-gradient(1px 1px at 50% 50%, #aaaaaa, transparent);
+opacity:0.30;
+animation:moveStars 180s linear infinite;
+}
 
-        /* Livre d or et avis */
-        #star-rating{
-            font-size:35px;
-            cursor:pointer;
-            margin-bottom:10px;
-        }
+@keyframes moveStars {
+0% { transform:translateY(0); }
+100% { transform:translateY(-800px); }
+}
 
-        .star{
-            color:gray;
-            transition:0.3s;
-        }
+/* Étoiles filantes */
+.shooting-star{
+position:fixed;
+top:-10px;
+width:3px;
+height:3px;
+background:white;
+box-shadow:0 0 10px white;
+transform:rotate(45deg);
+animation:shooting 2.5s linear infinite;
+z-index:-5;
+opacity:0.9;
+}
 
-        .star:hover{
-            transform:scale(1.2);
-            color:gold;
-        }
+@keyframes shooting{
+0%{ transform:translate(-150px,-150px) rotate(45deg); opacity:1; }
+80%{ opacity:1; }
+100%{ transform:translate(900px,900px) rotate(45deg); opacity:0; }
+}
 
-        #commentaires textarea{
-            width:100%;
-            padding:10px;
-            border-radius:8px;
-            border:1px solid #aaa;
-            font-size:16px;
-            margin-top:10px;
-        }
+/* HEADER */
+header{
+background:#FFA500;
+padding:20px;
+text-align:center;
+font-size:2.5em;
+position:sticky;
+top:0;
+z-index:50;
+color:#00008B;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
 
-        #send-comment{
-            margin-top:10px;
-            padding:10px 20px;
-            font-size:16px;
-            background:#0066ff;
-            color:white;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-        }
+/* Sélecteur de langue */
+.langue{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+padding:10px 20px;
+}
 
-        #comment-list .comment{
-            background:#eef6ff;
-            padding:12px;
-            border-radius:8px;
-            margin-bottom:10px;
-            border-left:5px solid #0066ff;
-            color:#00008B;
-        }
+.langue button{
+padding:8px 12px;
+border:none;
+border-radius:8px;
+background:#ADD8E6;
+color:#00008B;
+cursor:pointer;
+font-size:15px;
+font-weight:bold;
+}
 
-        /* Contact */
-        #contact input,#contact textarea{
-            width:100%;
-            padding:10px;
-            margin-bottom:10px;
-            border-radius:8px;
-            border:1px solid #aaa;
-        }
+/* SECTIONS GÉNÉRALES */
+section{
+padding:20px;
+max-width:900px;
+margin:0 auto 40px;
+}
 
-        #contact button{
-            padding:10px 20px;
-            background:#0066ff;
-            color:white;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-        }
+.carte{
+background: var(--card-bg);
+color: var(--card-text);
+padding:20px;
+border-radius:15px;
+margin-bottom:25px;
+box-shadow:2px 2px 15px rgba(0,0,0,0.25);
+backdrop-filter:blur(3px);
+}
 
-        /* Animation simple */
-        .fadeIn{
-            animation: fadeIn 2s;
-        }
+h2{
+font-size:2em;
+text-align:center;
+margin-bottom:15px;
+}
 
-        @keyframes fadeIn{
-            from{opacity:0;}
-            to{opacity:1;}
-        }
+/* Galerie */
+.galerie{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+gap:10px;
+}
 
-        /* Menu langues */
-        .langue{
-            display:flex;
-            justify-content:flex-end;
-            gap:10px;
-            margin-bottom:10px;
-        }
+.galerie img{
+width:100%;
+border-radius:12px;
+}
 
-        /* Responsive */
-        @media(max-width:600px){
-            header{
-                font-size:1.5em;
-            }
-        }
-    </style>
+/* Musique */
+audio{
+width:100%;
+margin-top:15px;
+}
+
+/* Livre d’or */
+#star-rating{
+font-size:35px;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+.star{
+color:gray;
+transition:0.3s;
+}
+
+.star:hover{
+color:gold;
+transform:scale(1.2);
+}
+
+#commentaires textarea{
+width:100%;
+border-radius:10px;
+padding:10px;
+border:1px solid #444;
+}
+
+#send-comment{
+margin-top:10px;
+background:#0066ff;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;
+font-size:18px;
+}
+
+#comment-list .comment{
+background:#eef6ff;
+padding:12px;
+border-radius:10px;
+border-left:5px solid #0066ff;
+margin-top:10px;
+color:#00008B;
+}
+
+/* Contact */
+#contact input, #contact textarea{
+width:100%;
+padding:10px;
+border-radius:10px;
+border:1px solid #444;
+margin-top:10px;
+}
+
+#contact button{
+margin-top:10px;
+padding:12px 20px;
+background:#0066ff;
+color:white;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:18px;
+}
+
+</style>
 </head>
 <body>
 
-<header>Etoile de Coeur</header>
+<!-- FOND ÉTOILÉ -->
+<div id="stars"></div>
+<div id="stars2"></div>
+<div id="stars3"></div>
+<!-- ÉTOILES FILANTES -->
+<div class="shooting-star" style="left:5%; animation-delay:5s;"></div>
+<div class="shooting-star" style="left:-10%; animation-delay:7s;"></div>
+<div class="shooting-star" style="left:60%; animation-delay:9s;"></div>
+<div class="shooting-star" style="left:10%; animation-delay:8s;"></div>
+<div class="shooting-star" style="left:50%; animation-delay:4s;"></div>
+<div class="shooting-star" style="left:-13%; animation-delay:6s;"></div>
+<div class="shooting-star" style="left:25%; animation-delay:9s;"></div>
+<div class="shooting-star" style="left:45%; animation-delay:13s;"></div>
+<div class="shooting-star" style="left:95%; animation-delay:4s;"></div>
+<div class="shooting-star" style="left:-40%; animation-delay:2s;"></div>
+<div class="shooting-star" style="left:15%; animation-delay:4s;"></div>
+<div class="shooting-star" style="left:40%; animation-delay:8s;"></div>
+<div class="shooting-star" style="left:-20%; animation-delay:3s;"></div>
+<div class="shooting-star" style="left:-8%; animation-delay:1s;"></div>
+<div class="shooting-star" style="left:70%; animation-delay:10s;"></div>
+<div class="shooting-star" style="left:20%; animation-delay:7s;"></div>
+<div class="shooting-star" style="left:90%; animation-delay:2s;"></div>
+<div class="shooting-star" style="left:75%; animation-delay:8s;"></div>
 
+
+<header>Etoile de Coeur</header>
 <div class="langue">
-    <button onclick="showFR()">FR</button>
-    <button onclick="showEN()">EN</button>
+<button onclick="showFR()">FR</button>
+<button onclick="showEN()">EN</button>
 </div>
 
-<!-- PAGE D ACCUEIL -->
-<section id="accueil" class="carte fadeIn" data-fr="Bienvenue sur le site hommage de mon petit frere de coeur, Timothy. Ce site est un hommage pour lui, pour se souvenir et partager son histoire."
-        data-en="Welcome to the tribute site of my little heart brother, Timothy. This site is a tribute to him, to remember and share his story.">
-    <p id="accueil-text"></p>
+<!-- ACCUEIL -->
+<section id="accueil" class="carte"
+data-fr="Bienvenue sur le site hommage de mon petit frere de coeur, Timothy. Ce site
+est un hommage pour lui, pour se souvenir et partager son histoire."
+data-en="Welcome to the tribute site of my little heart brother, Timothy. This site is a
+tribute to him, to remember and share his story.">
+<p id="accueil-text"></p>
 </section>
 
 <!-- GALERIE -->
-<section id="galerie" class="carte fadeIn">
-    <h2 data-fr="Galerie Photos" data-en="Photo Gallery">Galerie Photos</h2>
-    <div class="galerie">
+<section id="galerie" class="carte">
+<h2 data-fr="Galerie Photos" data-en="Photo Gallery">Galerie Photos</h2>
+<div class="galerie">
         <img src="https://i.imgur.com/xnsDgA4.jpeg" alt="Timothy">
         <img src="https://i.imgur.com/pgjrTSV.jpeg" alt="Souvenir">
         <img src="https://i.imgur.com/qAgXKgq.jpeg" alt="Photo 3">
         <img src="https://i.imgur.com/KLN2J8A.jpeg" alt="Photo 4">
         <img src="https://i.imgur.com/u6Wwwq9.jpeg" alt="Photo 5">
-
-    </div>
+</div>
 </section>
 
 <!-- MUSIQUE + HISTOIRE -->
-<section id="musique" class="carte fadeIn">
-    <h2 data-fr="Sa musique & Histoire" data-en="His Music & Story">Sa musique & Histoire</h2>
-    <audio controls autoplay loop>
-        <source src="https://www.dropbox.com/s/XXXXXXXXXXXX/timothy.mp3?raw=1" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-
-    <h3 data-fr="Paroles et histoire racontee par moi" data-en="Lyrics & Story Told By Me">Paroles et histoire racontée par moi</h3>
-    <p id="histoire-text" data-fr="Je raconte l histoire de Timothy, mon petit frere de coeur. Nous nous sommes rencontrer sur Snapchat et avons cree un lien tres fort. Il a subi du harcelement scolaire et des violences parentales. Malgrer mon soutien, le 28 octobre 2023, il s est suicider a seulement 11 ans, devant moi. Cela fait maintenant 2 ans passer. Ce site est un hommage pour lui, pour ne jamais oublier sa lumiere et son sourire. Je partage ses paroles, ses souvenirs, et tout ce qu il representait pour moi."
-       data-en="I tell the story of Timothy, my little heart brother. We met on Snapchat and formed a very strong bond. He suffered from school bullying and parental violence. Despite my support, on October 28, 2023, he took his own life at only 11 years old, in front of me. It's been almost 2 years. This site is a tribute to him, to never forget his light and smile. I share his lyrics, memories, and everything he represented to me."></p>
+<section id="musique" class="carte">
+<h2 data-fr="Sa musique & Histoire" data-en="His Music & Story">Sa musique &
+Histoire</h2>
+<audio controls autoplay loop>
+<source src="https://www.dropbox.com/s/XXXXXXXXXXX/timothy.mp3?raw=1"
+type="audio/mpeg">
+</audio>
+<h3 data-fr="Paroles & histoire raconter par moi" data-en="Lyrics & Story Told By
+Me">Paroles & histoire raconter par moi</h3>
+<p id="histoire-text"
+data-fr="A travers moi, tu vis encore sa chanson. Je raconte l histoire de Timothy, mon petit frere de coeur. Nous nous sommes
+rencontrer sur Snapchat et avons cree un lien tres fort. Il a subi du harcelement scolaire et
+des violences parentales. Malgrer mon soutien, le 28 octobre 2023, il s est suicider a
+seulement 11 ans, devant moi. Ce site est un hommage pour lui, pour ne jamais oublier sa
+lumiere et son sourire."
+data-en="Through me, you still live his song. I tell the story of Timothy, my little heart brother. We met on Snapchat and
+formed a strong bond. He suffered from school bullying and parental violence. On October
+28, 2023, he sadly ended his life at only 11. This site is a tribute to him, to never forget his
+smile and his light.">
+</p>
 </section>
 
-<!-- LIVRE D’OR + AVIS -->
-<section id="avis" class="carte fadeIn">
-
-
-    <div id="rating-section">
-        <div id="star-rating">
-            <span class="star" data-star="1">1</span>
-            <span class="star" data-star="2">2</span>
-            <span class="star" data-star="3">3</span>
-            <span class="star" data-star="4">4</span>
-            <span class="star" data-star="5">5</span>
-        </div>
-        <p id="rating-result"></p>
-    </div>
-
-    <div id="commentaires">
-        <textarea id="comment-input" placeholder="Votre message..." rows="4" data-fr="Votre message..." data-en="Your message..."></textarea>
-        <button id="send-comment" data-fr="Envoyer" data-en="Send">Envoyer</button>
-
-        <div id="comment-list"></div>
-    </div>
+<!-- AVIS -->
+<section id="avis" class="carte">
+<h2 data-fr="Livre d or & Avis ?" data-en="Guestbook & Reviews ?"></h2>
+<div id="star-rating">
+<span class="star" data-star="1">1</span>
+<span class="star" data-star="2">2</span>
+<span class="star" data-star="3">3</span>
+<span class="star" data-star="4">4</span>
+<span class="star" data-star="5">5</span>
+</div>
+<p id="rating-result"></p>
+<textarea id="comment-input" rows="4" data-fr="Votre message..." data-en="Your
+message..."></textarea>
+<button id="send-comment" data-fr="Envoyer" data-en="Send"></button>
+<div id="comment-list"></div>
 </section>
 
-<!-- FORMULAIRE CONTACT -->
-<section id="contact" class="carte fadeIn">
-    <h2 data-fr="Contact" data-en="Contact">Contact</h2>
-    <input type="text" placeholder="Votre nom" data-fr="Votre nom" data-en="Your name">
-    <input type="email" placeholder="Votre email" data-fr="Votre email" data-en="Your email">
-    <textarea rows="4" placeholder="Votre message" data-fr="Votre message" data-en="Your message"></textarea>
-    <button data-fr="Envoyer" data-en="Send">Envoyer</button>
+<!-- CONTACT -->
+<section id="contact" class="carte">
+<h2 data-fr="Contact" data-en="Contact"></h2>
+<input type="text" data-fr="Votre nom" data-en="Your name">
+<input type="email" data-fr="Votre email" data-en="Your email">
+<textarea rows="4" data-fr="Votre message" data-en="Your message"></textarea>
+<button data-fr="Envoyer" data-en="Send"></button>
 </section>
-
 <script>
-/* ---- LANGUE MULTILINGUE ---- */
+
+/* ---------------------- LANGUES ---------------------- */
 function setLanguage(lang){
-    document.querySelectorAll("[data-fr]").forEach(el=>{
-        if(lang==="fr"){
-            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
-                el.placeholder=el.getAttribute("data-fr");
-            }else{
-                el.textContent=el.getAttribute("data-fr");
-            }
-        }else{
-            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
-                el.placeholder=el.getAttribute("data-en");
-            }else{
-                el.textContent=el.getAttribute("data-en");
-            }
-        }
-    });
+document.querySelectorAll("[data-fr]").forEach(el=>{
+if(lang==="fr"){
+if(el.tagName==="INPUT" || el.tagName==="TEXTAREA")
+el.placeholder = el.getAttribute("data-fr");
+else
+el.textContent = el.getAttribute("data-fr");
+} else {
+if(el.tagName==="INPUT" || el.tagName==="TEXTAREA")
+el.placeholder = el.getAttribute("data-en");
+else
+el.textContent = el.getAttribute("data-en");
 }
-
-function showFR(){setLanguage("fr");}
-function showEN(){setLanguage("en");}
-
-// Initialisation en FR
+});
+}
+function showFR(){ setLanguage("fr"); }
+function showEN(){ setLanguage("en"); }
 showFR();
 
-/* ---- ETOILES ---- */
+/* ---------------------- AVIS ÉTOILES ---------------------- */
 const stars=document.querySelectorAll(".star");
 const result=document.getElementById("rating-result");
-stars.forEach(star=>{
-    star.addEventListener("click",()=>{
-        let rating=star.getAttribute("data-star");
-        stars.forEach(s=>{
-            s.style.color=(s.getAttribute("data-star")<=rating)?"gold":"gray";
-        });
-
-        localStorage.setItem("avis-note",rating);
-    });
+stars.forEach(s=>{
+s.addEventListener("click",()=>{
+let rating=s.getAttribute("data-star");
+stars.forEach(st=>{
+st.style.color=(st.getAttribute("data-star")<=rating)?"gold":"gray";
 });
+result.textContent="Note : "+rating+" ?";
+localStorage.setItem("star-rating",rating);
+});
+
+});
+/* Restore rating */
 window.addEventListener("load",()=>{
-    const savedRating=localStorage.getItem("avis-note");
-    if(savedRating){
-        stars.forEach(s=>{
-            s.style.color=(s.getAttribute("data-star")<=savedRating)?"gold":"gray";
-        });
-
-    }
+let saved=localStorage.getItem("star-rating");
+if(saved){
+stars.forEach(st=>{
+st.style.color=(st.getAttribute("data-star")<=saved)?"gold":"gray";
 });
-
-/* ---- LIVRE D’OR ---- */
-const sendBtn=document.getElementById("send-comment");
-const commentInput=document.getElementById("comment-input");
-const commentList=document.getElementById("comment-list");
-let commentaires=JSON.parse(localStorage.getItem("avis-commentaires")||"[]");
-function afficherCommentaires(){
-    commentList.innerHTML="";
-    commentaires.forEach(txt=>{
-        const div=document.createElement("div");
-        div.className="comment";
-        div.textContent=txt;
-        commentList.prepend(div);
-    });
+result.textContent="Note : "+saved+" ?";
 }
-afficherCommentaires();
-sendBtn.addEventListener("click",()=>{
-    const text=commentInput.value.trim();
-    if(text.length===0) return;
-    commentaires.push(text);
-    localStorage.setItem("avis-commentaires",JSON.stringify(commentaires));
-    afficherCommentaires();
-    commentInput.value="";
 });
-</script>
 
+/* ---------------------- COMMENTAIRES ---------------------- */
+let comments=JSON.parse(localStorage.getItem("comments")||"[]");
+const input=document.getElementById("comment-input");
+const list=document.getElementById("comment-list");
+const btn=document.getElementById("send-comment");
+function refresh(){
+list.innerHTML="";
+comments.forEach(c=>{
+let div=document.createElement("div");
+div.className="comment";
+div.textContent=c;
+list.prepend(div);
+});
+
+}
+refresh();
+btn.addEventListener("click",()=>{
+const text=input.value.trim();
+if(text==="")return;
+comments.push(text);
+localStorage.setItem("comments",JSON.stringify(comments));
+refresh();
+input.value="";
+});
+
+</script>
 </body>
 </html>
