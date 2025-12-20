@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story</title>
+
+<!-- Police Satisfy -->
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
+rel="stylesheet">
+<style>
+:root{
+--bg-color: #1A1A1A; /* noir clair */
+--text-color: #F5F7FF; /* blanc lumineux */
+--card-bg: rgba(255,255,255,0.05); /* glassmorphism */
+--card-border: rgba(255,255,255,0.2);
+--card-text: #F5F7FF;
+--accent-red: #FF3B3B; /* accent rouge */
+}
+
+body{
+margin:0;
+font-family:'Satisfy', cursive;
+background: #000 url('images/stars-background.jpg') repeat;
+background-size: cover;
+color: var(--text-color);
+}
+
+header{
+background: rgba(26,26,26,0.8);
+padding:20px;
+text-align:center;
+font-size:2em;
+position:sticky;
+top:0;
+z-index:100;
+color: var(--text-color);
+}
+
+/* Bouton Story */
+#story-btn{
+position: fixed;
+top:10px;
+left:10px;
+padding:10px 20px;
+font-weight:bold;
+border:none;
+border-radius:8px;
+background: var(--accent-red);
+color: var(--text-color);
+cursor:pointer;
+z-index:200;
+}
+
+nav{
+display:flex;
+justify-content:center;
+gap:15px;
+margin-bottom:20px;
+}
+
+nav a{
+padding:10px 15px;
+border-radius:8px;
+text-decoration:none;
+color: var(--text-color);
+background: var(--accent-red);
+font-weight:bold;
+}
+
+section{
+padding:20px;
+max-width:900px;
+margin:0 auto 40px;
+}
+
+.card{
+background: var(--card-bg);
+border:1px solid var(--card-border);
+padding:20px;
+border-radius:15px;
+color: var(--card-text);
+box-shadow:0 8px 20px rgba(255,255,255,0.05);
+backdrop-filter: blur(8px);
+margin-bottom:30px;
+}
+
+h2{
+text-align:center;
+margin-bottom:15px;
+}
+.chapter{
+margin-bottom:25px;
+}
+.chapter h3{
+margin-bottom:10px;
+color: var(--accent-red);
+}
+
+.langue{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-bottom:10px;
+}
+
+.fadeIn{
+animation: fadeIn 2s;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@media(max-width:600px){
+header{
+font-size:1.5em;
+}
+#story-btn{
+padding:8px 15px;
+font-size:0.9em;
+}
+
+}
+</style>
+</head>
+<body>
+<header>Etoile de Coeur</header>
+
+<!-- Bouton pour revenir à l accueil -->
+<button id="story-btn" onclick="window.location.href='index.html'">Story</button>
+<div class="langue">
+<button onclick="showFR()">FR</button>
+<button onclick="showEN()">EN</button>
+</div>
+<section class="card fadeIn">
+<h2 data-fr="L histoire complete de Timothy" data-en="Timothy’s Full Story">L’histoire
+complète de Timothy</h2>
+
+<!-- Chapitre 1 -->
+<div class="chapter">
+<h3 data-fr="Rencontre et lien fort" data-en="Meeting and Strong Bond">Rencontre et lien
+fort</h3>
+<p id="chapter1-text" data-fr="
+Nous nous sommes rencontrer sur Snapchat quand Timothy avait 11 ans. Immediatement,
+un lien tres fort s est cree entre nous. Ses rires et sa curiositer illuminaient chaque
+conversation. Il m appelait souvent son frere de coeur et je le protegeais comme un vrai
+grand frere."
+data-en="
+We met on Snapchat when Timothy was 11 years old. Immediately, a very strong bond
+formed between us. His laughter and curiosity brightened every conversation. He often
+called me his heart brother, and I protected him like a real big brother."></p>
+</div>
+
+<!-- Chapitre 2 -->
+<div class="chapter">
+<h3 data-fr="Moments partager" data-en="Shared Moments">Moments partager</h3>
+<p id="chapter2-text" data-fr="
+Nous avons partager des rires, des jeux, des confidences, et des moments simples mais
+precieux. Chaque echange renforcait notre lien. Je voyais sa joie et sa gentillesse, et ces
+instants resteront graver dans ma memoire."
+data-en="
+We shared laughter, games, secrets, and simple yet precious moments. Each exchange
+strengthened our bond. I saw his joy and kindness, and these moments will remain engraved
+in my memory."></p>
+</div>
+
+<!-- Chapitre 3 -->
+<div class="chapter">
+<h3 data-fr="Les difficulter" data-en="The Struggles">Les difficulter</h3>
+<p id="chapter3-text" data-fr="
+Malheureusement, Timothy a subi du harcelement scolaire et des violences parentales. Les
+mots blessants et les moqueries commencaient à le peser lourdement. Malgrer mes
+encouragements et mon soutien constant, il se sentait souvent seul face a sa souffrance."
+data-en="
+Unfortunately, Timothy suffered from school bullying and parental violence. Hurtful words
+and teasing weighed heavily on him. Despite my constant encouragement and support, he
+often felt alone with his suffering."></p>
+</div>
+
+<!-- Chapitre 4 -->
+<div class="chapter">
+<h3 data-fr="Le drame" data-en="The Tragedy">Le drame</h3>
+<p id="chapter4-text" data-fr="
+Le 28 octobre 2023, a seulement 11 ans, Timothy a pris la tragique decision de se suicider
+devant moi. Ce fut un moment d’une douleur indescriptible, un vide immense. Son depart a
+laisser un silence que rien ne peut combler."
+data-en="
+On October 28, 2023, at only 11 years old, Timothy made the tragic decision to take his own
+life in front of me. It was a moment of indescribable pain, a huge emptiness. His departure
+left a silence that nothing can fill."></p>
+</div>
+
+<!-- Chapitre 5 -->
+<div class="chapter">
+<h3 data-fr="Hommage" data-en="Tribute">Hommage</h3>
+<p id="chapter5-text" data-fr="
+Ce site est un hommage à Timothy. Il garde sa memoire vivante et permet à tous de se
+souvenir de sa lumière et de son sourire. Son courage, sa gentillesse et son ame resteront a
+jamais graver dans mon coeur."
+data-en="
+This site is a tribute to Timothy. It keeps his memory alive and allows everyone to remember
+his light and smile. His courage, kindness, and soul will forever be engraved in my
+heart."></p>
+</div>
+
+</section>
+<script>
+
+/* ---- LANGUE MULTILINGUE ---- */
+function setLanguage(lang){
+document.querySelectorAll("[data-fr]").forEach(el=>{
+if(lang==="fr"){
+if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
+el.placeholder=el.getAttribute("data-fr");
+}else{
+el.textContent=el.getAttribute("data-fr");
+}
+}else{
+if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
+el.placeholder=el.getAttribute("data-en");
+}else{
+el.textContent=el.getAttribute("data-en");
+}
+}
+});
+
+}
+function showFR(){setLanguage("fr");}
+function showEN(){setLanguage("en");}
+showFR();
+
+</script>
+</body>
+</html>
