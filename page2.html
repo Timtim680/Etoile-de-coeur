@@ -5,256 +5,324 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Acceuil</title>
 
-    <!-- Favicon depuis Imgur -->
+<!-- Favicon -->
 <link rel="icon" type="image/jpeg" href="https://i.imgur.com/baPnUXi.jpeg">
 
-<!-- Police Satisfy -->
-<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap"
-rel="stylesheet">
+<!-- Police -->
+<link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+
 <style>
 :root{
---bg-color: #1A1A1A; /* noir clair */
---text-color: #F5F7FF; /* blanc lumineux */
---card-bg: rgba(255,255,255,0.05); /* glassmorphism */
---card-border: rgba(255,255,255,0.2);
---card-text: #F5F7FF;
---accent-red: #FF3B3B; /* accent rouge */
+    --bg-color: #1A1A1A;
+    --text-color: #F5F7FF;
+    --card-bg: rgba(255,255,255,0.05);
+    --card-border: rgba(255,255,255,0.2);
+    --card-text: #F5F7FF;
+    --accent-red: #FF3B3B;
 }
 
 body{
-margin:0;
-font-family:'Satisfy', cursive;
-background: #000 url('images/stars-background.jpg') repeat;
-background-size: cover;
-color: var(--text-color);
+    margin:0;
+    font-family:'Satisfy', cursive;
+    background: #000;
+    color: var(--text-color);
 }
 
 header{
-background: rgba(26,26,26,0.8);
-padding:20px;
-text-align:center;
-font-size:2em;
-position:sticky;
-top:0;
-z-index:100;
-color: var(--text-color);
+    background: rgba(26,26,26,0.8);
+    padding:20px;
+    text-align:center;
+    font-size:2em;
+    position:sticky;
+    top:0;
+    z-index:100;
+    color: var(--text-color);
 }
 
-    /* Footer en bas du site */
 footer {
-background-color: #222; /* Couleur de fond */
-color: #fff; /* Couleur du texte */
-text-align: center;
-padding: 15px 0;
-font-size: 14px;
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
 }
 
-/* Bouton Story */
+/* Bouton Accueil */
 #story-btn{
-position: fixed;
-top:10px;
-left:10px;
-padding:10px 20px;
-font-weight:bold;
-border:none;
-border-radius:8px;
-background: var(--accent-red);
-color: var(--text-color);
-cursor:pointer;
-z-index:200;
+    position: fixed;
+    top:10px;
+    left:10px;
+    padding:10px 20px;
+    font-weight:bold;
+    border:none;
+    border-radius:8px;
+    background: var(--accent-red);
+    color: var(--text-color);
+    cursor:pointer;
+    z-index:200;
 }
 
 nav{
-display:flex;
-justify-content:center;
-gap:15px;
-margin-bottom:20px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:20px;
 }
 
 nav a{
-padding:10px 15px;
-border-radius:8px;
-text-decoration:none;
-color: var(--text-color);
-background: var(--accent-red);
-font-weight:bold;
+    padding:10px 15px;
+    border-radius:8px;
+    text-decoration:none;
+    color: var(--text-color);
+    background: var(--accent-red);
+    font-weight:bold;
 }
 
 section{
-padding:20px;
-max-width:900px;
-margin:0 auto 40px;
+    padding:20px;
+    max-width:900px;
+    margin:0 auto 40px;
 }
 
 .card{
-background: var(--card-bg);
-border:1px solid var(--card-border);
-padding:20px;
-border-radius:15px;
-color: var(--card-text);
-box-shadow:0 8px 20px rgba(255,255,255,0.05);
-backdrop-filter: blur(8px);
-margin-bottom:30px;
+    background: var(--card-bg);
+    border:1px solid var(--card-border);
+    padding:20px;
+    border-radius:15px;
+    color: var(--card-text);
+    box-shadow:0 8px 20px rgba(255,255,255,0.05);
+    backdrop-filter: blur(8px);
+    margin-bottom:30px;
 }
 
 h2{
-text-align:center;
-margin-bottom:15px;
+    text-align:center;
+    margin-bottom:15px;
 }
+
 .chapter{
-margin-bottom:25px;
+    margin-bottom:25px;
 }
+
 .chapter h3{
-margin-bottom:10px;
-color: var(--accent-red);
+    margin-bottom:10px;
+    color: var(--accent-red);
 }
 
 .langue{
-display:flex;
-justify-content:flex-end;
-gap:10px;
-margin-bottom:10px;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-bottom:10px;
 }
 
 .fadeIn{
-animation: fadeIn 2s;
+    animation: fadeIn 2s;
 }
 
 @keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
-@media(max-width:600px){
-header{
-font-size:1.5em;
-}
-#story-btn{
-padding:8px 15px;
-font-size:0.9em;
+/* -------- MUR DE COEUR -------- */
+#mur-coeur {
+    margin-top: 40px;
 }
 
+.mur-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
 }
+
+.coeur-note {
+    width: 180px;
+    padding: 15px;
+    background: rgba(255, 80, 80, 0.2);
+    border: 1px solid rgba(255, 80, 80, 0.6);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.coeur-note::before {
+    content: "❤️";
+    display: block;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+#ajout-message {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#message-input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+#btn-ajout {
+    padding: 10px 20px;
+    background: var(--accent-red);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 </style>
 </head>
+
 <body>
+
 <header>Etoile de Coeur</header>
 
-<!-- Bouton pour revenir à l accueil -->
 <button id="story-btn" onclick="window.location.href='index.html'">Accueil</button>
-<div class="langue">
-<button onclick="showFR()">FR</button>
-<button onclick="showEN()">EN</button>
-</div>
-<section class="card fadeIn">
-<h2 data-fr="L histoire complete de Timothy" data-en="Timothy’s Full Story">L’histoire
-complète de Timothy</h2>
 
-<!-- Chapitre 1 -->
+<div class="langue">
+    <button onclick="showFR()">FR</button>
+    <button onclick="showEN()">EN</button>
+</div>
+
+<section class="card fadeIn">
+<h2 data-fr="L’histoire complète de Timothy" data-en="Timothy’s Full Story">L’histoire complète de Timothy</h2>
+
 <div class="chapter">
-<h3 data-fr="Rencontre et lien fort" data-en="Meeting and Strong Bond">Rencontre et lien
-fort</h3>
+<h3 data-fr="Rencontre et lien fort" data-en="Meeting and Strong Bond">Rencontre et lien fort</h3>
 <p id="chapter1-text" data-fr="
 Nous nous sommes rencontrer sur Snapchat quand Timothy avait 11 ans. Immediatement,
-un lien tres fort s est cree entre nous. Ses rires et sa curiositer illuminaient chaque
-conversation. Il m appelait souvent son frere de coeur et je le protegeais comme un vrai
-grand frere."
+un lien tres fort s'est cree entre nous..." 
 data-en="
-We met on Snapchat when Timothy was 11 years old. Immediately, a very strong bond
-formed between us. His laughter and curiosity brightened every conversation. He often
-called me his heart brother, and I protected him like a real big brother."></p>
+We met on Snapchat when Timothy was 11..."></p>
 </div>
 
-<!-- Chapitre 2 -->
 <div class="chapter">
 <h3 data-fr="Moments partager" data-en="Shared Moments">Moments partager</h3>
 <p id="chapter2-text" data-fr="
-Nous avons partager des rires, des jeux, des confidences, et des moments simples mais
-precieux. Chaque echange renforcait notre lien. Je voyais sa joie et sa gentillesse, et ces
-instants resteront graver dans ma memoire."
+Nous avons partager des rires, des jeux..." 
 data-en="
-We shared laughter, games, secrets, and simple yet precious moments. Each exchange
-strengthened our bond. I saw his joy and kindness, and these moments will remain engraved
-in my memory."></p>
+We shared laughter, games..."></p>
 </div>
 
-<!-- Chapitre 3 -->
 <div class="chapter">
 <h3 data-fr="Les difficulter" data-en="The Struggles">Les difficulter</h3>
 <p id="chapter3-text" data-fr="
-Malheureusement, Timothy a subi du harcelement scolaire et des violences parentales. Les
-mots blessants et les moqueries commencaient à le peser lourdement. Malgrer mes
-encouragements et mon soutien constant, il se sentait souvent seul face a sa souffrance."
+Malheureusement, Timothy a subi du harcelement scolaire..." 
 data-en="
-Unfortunately, Timothy suffered from school bullying and parental violence. Hurtful words
-and teasing weighed heavily on him. Despite my constant encouragement and support, he
-often felt alone with his suffering."></p>
+Sadly, Timothy suffered bullying..."></p>
 </div>
 
-<!-- Chapitre 4 -->
 <div class="chapter">
 <h3 data-fr="Le drame" data-en="The Tragedy">Le drame</h3>
 <p id="chapter4-text" data-fr="
-Le 28 octobre 2023, a seulement 11 ans, Timothy a pris la tragique decision de se suicider
-devant moi. Ce fut un moment d’une douleur indescriptible, un vide immense. Son depart a
-laisser un silence que rien ne peut combler."
+Le 28 octobre 2023, Timothy a pris la tragique décision..." 
 data-en="
-On October 28, 2023, at only 11 years old, Timothy made the tragic decision to take his own
-life in front of me. It was a moment of indescribable pain, a huge emptiness. His departure
-left a silence that nothing can fill."></p>
+On October 28, 2023..."></p>
 </div>
 
-<!-- Chapitre 5 -->
 <div class="chapter">
 <h3 data-fr="Hommage" data-en="Tribute">Hommage</h3>
 <p id="chapter5-text" data-fr="
-Ce site est un hommage à Timothy. Il garde sa memoire vivante et permet à tous de se
-souvenir de sa lumière et de son sourire. Son courage, sa gentillesse et son ame resteront a
-jamais graver dans mon coeur."
+Ce site est un hommage à Timothy..." 
 data-en="
-This site is a tribute to Timothy. It keeps his memory alive and allows everyone to remember
-his light and smile. His courage, kindness, and soul will forever be engraved in my
-heart."></p>
+This site is a tribute..."></p>
 </div>
-  
+</section>
+
 <!-- GALERIE -->
-<section id="galerie" class="carte">
+<section id="galerie" class="card fadeIn">
 <h2 data-fr="Galerie Photos" data-en="Photo Gallery">Galerie Photos</h2>
 <div class="galerie">
-        <img src="https://i.imgur.com/AuUAFk1.jpeg" alt="Timothy">
-  
+    <img src="https://i.imgur.com/AuUAFk1.jpeg" alt="Timothy" style="width:100%; border-radius:10px;">
+</div>
 </section>
+
+<!-- ----------- MUR DE COEUR ----------- -->
+<section id="mur-coeur" class="card fadeIn">
+    <h2 data-fr="Mur de Cœur" data-en="Heart Wall">Mur de Cœur</h2>
+
+    <div class="mur-container" id="mur-container">
+        <!-- Messages affichés ici -->
+    </div>
+
+    <div id="ajout-message">
+        <input type="text" id="message-input" placeholder="Écris un message pour Timothy…">
+        <br>
+        <button id="btn-ajout">Ajouter ❤️</button>
+    </div>
+</section>
+
 <script>
 
-/* ---- LANGUE MULTILINGUE ---- */
+/* ---- LANGUES ---- */
 function setLanguage(lang){
-document.querySelectorAll("[data-fr]").forEach(el=>{
-if(lang==="fr"){
-if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
-el.placeholder=el.getAttribute("data-fr");
-}else{
-el.textContent=el.getAttribute("data-fr");
-}
-}else{
-if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
-el.placeholder=el.getAttribute("data-en");
-}else{
-el.textContent=el.getAttribute("data-en");
-}
-}
-});
-
+    document.querySelectorAll("[data-fr]").forEach(el=>{
+        if(lang==="fr"){
+            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
+                el.placeholder=el.getAttribute("data-fr");
+            } else {
+                el.textContent=el.getAttribute("data-fr");
+            }
+        } else {
+            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
+                el.placeholder=el.getAttribute("data-en");
+            } else {
+                el.textContent=el.getAttribute("data-en");
+            }
+        }
+    });
 }
 function showFR(){setLanguage("fr");}
 function showEN(){setLanguage("en");}
 showFR();
-  
+
+/* ---- MUR DE COEUR ---- */
+const murContainer = document.getElementById("mur-container");
+const inputMessage = document.getElementById("message-input");
+const btnAjout = document.getElementById("btn-ajout");
+
+function chargerMessages() {
+    const saved = JSON.parse(localStorage.getItem("murCoeur") || "[]");
+    saved.forEach(msg => ajouterNote(msg, false));
+}
+
+function ajouterNote(message, save = true) {
+    const div = document.createElement("div");
+    div.className = "coeur-note";
+    div.textContent = message;
+    murContainer.appendChild(div);
+
+    if (save) {
+        const saved = JSON.parse(localStorage.getItem("murCoeur") || "[]");
+        saved.push(message);
+        localStorage.setItem("murCoeur", JSON.stringify(saved));
+    }
+}
+
+btnAjout.addEventListener("click", () => {
+    if (inputMessage.value.trim() !== "") {
+        ajouterNote(inputMessage.value.trim(), true);
+        inputMessage.value = "";
+    }
+});
+
+chargerMessages();
+
 </script>
 
-  <footer>
+<footer>
 © Alexis 2025 – Tous droits réservés
 </footer>
-  </script>
-  
+
 </body>
 </html>
