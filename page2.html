@@ -3,10 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Acceuil</title>
-
-<!-- Favicon -->
-<link rel="icon" type="image/jpeg" href="https://i.imgur.com/baPnUXi.jpeg">
+<title>Étoile de Cœur</title>
 
 <!-- Police -->
 <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
@@ -24,8 +21,11 @@
 body{
     margin:0;
     font-family:'Satisfy', cursive;
-    background: #000;
+    background: #000 url('images/stars-background.jpg') repeat;
+    background-size: cover;
     color: var(--text-color);
+    overflow-x:hidden;
+    position:relative;
 }
 
 header{
@@ -47,7 +47,6 @@ footer {
     font-size: 14px;
 }
 
-/* Bouton Accueil */
 #story-btn{
     position: fixed;
     top:10px;
@@ -62,26 +61,11 @@ footer {
     z-index:200;
 }
 
-nav{
+.langue{
     display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-bottom:20px;
-}
-
-nav a{
-    padding:10px 15px;
-    border-radius:8px;
-    text-decoration:none;
-    color: var(--text-color);
-    background: var(--accent-red);
-    font-weight:bold;
-}
-
-section{
-    padding:20px;
-    max-width:900px;
-    margin:0 auto 40px;
+    justify-content:flex-end;
+    gap:10px;
+    margin-bottom:10px;
 }
 
 .card{
@@ -95,190 +79,192 @@ section{
     margin-bottom:30px;
 }
 
-h2{
-    text-align:center;
-    margin-bottom:15px;
-}
+h2{text-align:center;margin-bottom:15px;}
+.chapter{margin-bottom:25px;}
+.chapter h3{margin-bottom:10px;color: var(--accent-red);}
+.fadeIn{animation: fadeIn 2s;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
-.chapter{
-    margin-bottom:25px;
-}
-
-.chapter h3{
-    margin-bottom:10px;
-    color: var(--accent-red);
-}
-
-.langue{
+/* ------------ Mur de Cœur ------------ */
+#mur-coeur{margin-top:40px;}
+.mur-container{
     display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-bottom:10px;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
 }
-
-.fadeIn{
-    animation: fadeIn 2s;
-}
-
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-/* -------- MUR DE COEUR -------- */
-#mur-coeur {
-    margin-top: 40px;
-}
-
-.mur-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-}
-
-.coeur-note {
-    width: 180px;
-    padding: 15px;
+.coeur-note{
+    width:180px;
+    padding:15px;
     background: rgba(255, 80, 80, 0.2);
-    border: 1px solid rgba(255, 80, 80, 0.6);
-    border-radius: 15px;
+    border:1px solid rgba(255,80,80,0.6);
+    border-radius:15px;
     backdrop-filter: blur(5px);
     color: #fff;
-    font-family: Arial, sans-serif;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    text-align:center;
+    box-shadow:0 5px 15px rgba(255,0,0,0.3);
 }
-
-.coeur-note::before {
-    content: "❤️";
-    display: block;
-    font-size: 22px;
-    margin-bottom: 8px;
+.coeur-note::before{
+    content:"❤️";
+    display:block;
+    font-size:22px;
+    margin-bottom:8px;
 }
-
-#ajout-message {
-    margin-top: 20px;
-    text-align: center;
+#ajout-message{text-align:center;margin-top:20px;}
+#message-input{
+    width:80%;
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    margin-bottom:10px;
 }
-
-#message-input {
-    width: 80%;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin-bottom: 10px;
-}
-
-#btn-ajout {
-    padding: 10px 20px;
+#btn-ajout{
+    padding:10px 20px;
     background: var(--accent-red);
-    border: none;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
+    border:none;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
+/* ------------ Galerie ------------ */
+.galerie{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+}
+.galerie img{
+    width:100%;
+    border-radius:10px;
+}
+
+/* ------------ Cœurs animés ------------ */
+.heart{
+    position:fixed;
+    font-size:20px;
+    animation:fall linear infinite;
+    z-index:50;
+    pointer-events:none;
+    opacity:0.8;
+}
+@keyframes fall{
+    0%{transform:translateY(-50px);}
+    100%{transform:translateY(110vh);}
+}
+
+@media(max-width:600px){
+header{font-size:1.5em;}
+#story-btn{padding:8px 15px;font-size:0.9em;}
+#message-input{width:90%;}
+}
 </style>
 </head>
 
 <body>
 
-<header>Etoile de Coeur</header>
-
+<header>Étoile de Cœur</header>
 <button id="story-btn" onclick="window.location.href='index.html'">Accueil</button>
-
 <div class="langue">
-    <button onclick="showFR()">FR</button>
-    <button onclick="showEN()">EN</button>
+<button onclick="showFR()">FR</button>
+<button onclick="showEN()">EN</button>
 </div>
 
-<section class="card fadeIn">
-<h2 data-fr="L’histoire complète de Timothy" data-en="Timothy’s Full Story">L’histoire complète de Timothy</h2>
-
-<div class="chapter">
-<h3 data-fr="Rencontre et lien fort" data-en="Meeting and Strong Bond">Rencontre et lien fort</h3>
-<p id="chapter1-text" data-fr="
-Nous nous sommes rencontrer sur Snapchat quand Timothy avait 11 ans. Immediatement,
-un lien tres fort s'est cree entre nous..." 
-data-en="
-We met on Snapchat when Timothy was 11..."></p>
-</div>
-
-<div class="chapter">
-<h3 data-fr="Moments partager" data-en="Shared Moments">Moments partager</h3>
-<p id="chapter2-text" data-fr="
-Nous avons partager des rires, des jeux..." 
-data-en="
-We shared laughter, games..."></p>
-</div>
-
-<div class="chapter">
-<h3 data-fr="Les difficulter" data-en="The Struggles">Les difficulter</h3>
-<p id="chapter3-text" data-fr="
-Malheureusement, Timothy a subi du harcelement scolaire..." 
-data-en="
-Sadly, Timothy suffered bullying..."></p>
-</div>
-
-<div class="chapter">
-<h3 data-fr="Le drame" data-en="The Tragedy">Le drame</h3>
-<p id="chapter4-text" data-fr="
-Le 28 octobre 2023, Timothy a pris la tragique décision..." 
-data-en="
-On October 28, 2023..."></p>
-</div>
-
-<div class="chapter">
-<h3 data-fr="Hommage" data-en="Tribute">Hommage</h3>
-<p id="chapter5-text" data-fr="
-Ce site est un hommage à Timothy..." 
-data-en="
-This site is a tribute..."></p>
+<!-- Mur de cœur -->
+<section class="card fadeIn" id="mur-coeur">
+<h2 data-fr="Mur de Cœur" data-en="Heart Wall">Mur de Cœur</h2>
+<div class="mur-container" id="mur-container"></div>
+<div id="ajout-message">
+<input type="text" id="message-input" placeholder="Écris un message pour Timothy…">
+<br>
+<button id="btn-ajout">Ajouter ❤️</button>
 </div>
 </section>
 
-<!-- GALERIE -->
-<section id="galerie" class="card fadeIn">
+<!-- Galerie -->
+<section class="card fadeIn">
 <h2 data-fr="Galerie Photos" data-en="Photo Gallery">Galerie Photos</h2>
 <div class="galerie">
-    <img src="https://i.imgur.com/AuUAFk1.jpeg" alt="Timothy" style="width:100%; border-radius:10px;">
+<img src="https://i.imgur.com/AuUAFk1.jpeg" alt="Timothy">
+<img src="https://i.imgur.com/VWLbQMU.png" alt="Souvenir">
 </div>
 </section>
 
-<!-- ----------- MUR DE COEUR ----------- -->
-<section id="mur-coeur" class="card fadeIn">
-    <h2 data-fr="Mur de Cœur" data-en="Heart Wall">Mur de Cœur</h2>
-
-    <div class="mur-container" id="mur-container">
-        <!-- Messages affichés ici -->
-    </div>
-
-    <div id="ajout-message">
-        <input type="text" id="message-input" placeholder="Écris un message pour Timothy…">
-        <br>
-        <button id="btn-ajout">Ajouter ❤️</button>
-    </div>
+<!-- Histoire complète -->
+<section class="card fadeIn">
+<h2 data-fr="L’histoire complète de Timothy" data-en="Timothy’s Full Story">L’histoire complète de Timothy</h2>
+<div class="chapter">
+<h3 data-fr="Rencontre et lien fort" data-en="Meeting and Strong Bond">Rencontre et lien fort</h3>
+<p data-fr="Nous nous sommes rencontré sur Snapchat quand Timothy avait 11 ans. Un lien très fort s'est créé entre nous. Ses rires illuminaient chaque conversation." data-en="We met on Snapchat when Timothy was 11. A very strong bond formed. His laughter brightened every conversation."></p>
+</div>
+<div class="chapter">
+<h3 data-fr="Moments partagés" data-en="Shared Moments">Moments partagés</h3>
+<p data-fr="Nous avons partagé des rires, des jeux et des confidences. Chaque échange renforçait notre lien." data-en="We shared laughter, games, and secrets. Each exchange strengthened our bond."></p>
+</div>
+<div class="chapter">
+<h3 data-fr="Les difficultés" data-en="The Struggles">Les difficultés</h3>
+<p data-fr="Malheureusement, Timothy a subi du harcèlement scolaire et des violences parentales. Il se sentait souvent seul malgré mon soutien." data-en="Unfortunately, Timothy suffered from school bullying and parental violence. He often felt alone despite my support."></p>
+</div>
+<div class="chapter">
+<h3 data-fr="Le drame" data-en="The Tragedy">Le drame</h3>
+<p data-fr="Le 28 octobre 2023, à 11 ans, Timothy s’est suicidé devant moi. Un moment d’une douleur indescriptible." data-en="On October 28, 2023, at 11 years old, Timothy took his own life in front of me. An indescribable moment of pain."></p>
+</div>
+<div class="chapter">
+<h3 data-fr="Hommage" data-en="Tribute">Hommage</h3>
+<p data-fr="Ce site est un hommage à Timothy, pour garder sa mémoire vivante et partager sa lumière et son sourire." data-en="This site is a tribute to Timothy, to keep his memory alive and share his light and smile."></p>
+</div>
 </section>
 
-<script>
+<footer>© Alexis 2025 – Tous droits réservés</footer>
 
-/* ---- LANGUES ---- */
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js";
+import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBoCKZottJJnY4VbH32BTu2nPg5sPGtRQo",
+    authDomain: "etoile-de-coeur.firebaseapp.com",
+    databaseURL: "https://etoile-de-coeur-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "etoile-de-coeur",
+    storageBucket: "etoile-de-coeur.firebasestorage.app",
+    messagingSenderId: "157020550576",
+    appId: "1:157020550576:web:2dec7b6758ce694ad29275"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const murRef = ref(db, "murCoeur");
+
+const btnAjout = document.getElementById("btn-ajout");
+const inputMessage = document.getElementById("message-input");
+const murContainer = document.getElementById("mur-container");
+
+btnAjout.addEventListener("click", () => {
+    const message = inputMessage.value.trim();
+    if(message !== ""){
+        push(murRef, message);
+        inputMessage.value = "";
+    }
+});
+
+// Écouter les messages en temps réel
+onChildAdded(murRef, (data) => {
+    const div = document.createElement("div");
+    div.className = "coeur-note";
+    div.textContent = data.val();
+    murContainer.appendChild(div);
+});
+</script>
+
+<script>
+// LANGUE
 function setLanguage(lang){
     document.querySelectorAll("[data-fr]").forEach(el=>{
         if(lang==="fr"){
-            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
-                el.placeholder=el.getAttribute("data-fr");
-            } else {
-                el.textContent=el.getAttribute("data-fr");
-            }
+            el.textContent ? el.textContent=el.getAttribute("data-fr") : el.placeholder=el.getAttribute("data-fr");
         } else {
-            if(el.tagName==="INPUT" || el.tagName==="TEXTAREA"){
-                el.placeholder=el.getAttribute("data-en");
-            } else {
-                el.textContent=el.getAttribute("data-en");
-            }
+            el.textContent ? el.textContent=el.getAttribute("data-en") : el.placeholder=el.getAttribute("data-en");
         }
     });
 }
@@ -286,43 +272,19 @@ function showFR(){setLanguage("fr");}
 function showEN(){setLanguage("en");}
 showFR();
 
-/* ---- MUR DE COEUR ---- */
-const murContainer = document.getElementById("mur-container");
-const inputMessage = document.getElementById("message-input");
-const btnAjout = document.getElementById("btn-ajout");
-
-function chargerMessages() {
-    const saved = JSON.parse(localStorage.getItem("murCoeur") || "[]");
-    saved.forEach(msg => ajouterNote(msg, false));
+// Cœurs animés
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=12+Math.random()*24+"px";
+    heart.style.animationDuration=3+Math.random()*5+"s";
+    heart.textContent="❤️";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove()},8000);
 }
-
-function ajouterNote(message, save = true) {
-    const div = document.createElement("div");
-    div.className = "coeur-note";
-    div.textContent = message;
-    murContainer.appendChild(div);
-
-    if (save) {
-        const saved = JSON.parse(localStorage.getItem("murCoeur") || "[]");
-        saved.push(message);
-        localStorage.setItem("murCoeur", JSON.stringify(saved));
-    }
-}
-
-btnAjout.addEventListener("click", () => {
-    if (inputMessage.value.trim() !== "") {
-        ajouterNote(inputMessage.value.trim(), true);
-        inputMessage.value = "";
-    }
-});
-
-chargerMessages();
-
+setInterval(createHeart,300);
 </script>
-
-<footer>
-© Alexis 2025 – Tous droits réservés
-</footer>
 
 </body>
 </html>
