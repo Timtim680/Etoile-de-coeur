@@ -165,6 +165,7 @@ header{font-size:1.5em;}
 
 <header>Étoile de Cœur</header>
 <button id="story-btn" onclick="window.location.href='index.html'">Accueil</button>
+
 <div class="langue">
 <button onclick="showFR()">FR</button>
 <button onclick="showEN()">EN</button>
@@ -190,76 +191,40 @@ header{font-size:1.5em;}
 </div>
 </section>
 
+<!-- Histoire complète -->
 <section class="card fadeIn">
-<h2 data-fr="L histoire complete de Timothy" data-en="Timothy’s Full Story">L’histoire
-complète de Timothy</h2>
+<h2 data-fr="L’histoire complète de Timothy" data-en="Timothy’s Full Story">L’histoire complète de Timothy</h2>
 
-<!-- Chapitre 1 -->
 <div class="chapter">
-<h3 data-fr="Rencontre et lien fort" data-en="Meeting and Strong Bond">Rencontre et lien
-fort</h3>
-<p id="chapter1-text" data-fr="
-Nous nous sommes rencontrer sur Snapchat quand Timothy avait 11 ans. Immediatement,
-un lien tres fort s est cree entre nous. Ses rires et sa curiositer illuminaient chaque
-conversation. Il m appelait souvent son frere de coeur et je le protegeais comme un vrai
-grand frere."
-data-en="
-We met on Snapchat when Timothy was 11 years old. Immediately, a very strong bond
-formed between us. His laughter and curiosity brightened every conversation. He often
-called me his heart brother, and I protected him like a real big brother."></p>
+<h3 data-fr="Rencontre et lien fort" data-en="Meeting and Strong Bond">Rencontre et lien fort</h3>
+<p data-fr="Nous nous sommes rencontré sur Snapchat quand Timothy avait 11 ans. Un lien très fort s'est créé entre nous. Ses rires illuminaient chaque conversation." 
+   data-en="We met on Snapchat when Timothy was 11. A very strong bond formed. His laughter brightened every conversation."></p>
 </div>
 
-<!-- Chapitre 2 -->
 <div class="chapter">
-<h3 data-fr="Moments partager" data-en="Shared Moments">Moments partager</h3>
-<p id="chapter2-text" data-fr="
-Nous avons partager des rires, des jeux, des confidences, et des moments simples mais
-precieux. Chaque echange renforcait notre lien. Je voyais sa joie et sa gentillesse, et ces
-instants resteront graver dans ma memoire."
-data-en="
-We shared laughter, games, secrets, and simple yet precious moments. Each exchange
-strengthened our bond. I saw his joy and kindness, and these moments will remain engraved
-in my memory."></p>
+<h3 data-fr="Moments partagés" data-en="Shared Moments">Moments partagés</h3>
+<p data-fr="Nous avons partagé des rires, des jeux et des confidences. Chaque échange renforçait notre lien."
+   data-en="We shared laughter, games, and secrets. Each exchange strengthened our bond."></p>
 </div>
 
-<!-- Chapitre 3 -->
 <div class="chapter">
-<h3 data-fr="Les difficulter" data-en="The Struggles">Les difficulter</h3>
-<p id="chapter3-text" data-fr="
-Malheureusement, Timothy a subi du harcelement scolaire et des violences parentales. Les
-mots blessants et les moqueries commencaient à le peser lourdement. Malgrer mes
-encouragements et mon soutien constant, il se sentait souvent seul face a sa souffrance."
-data-en="
-Unfortunately, Timothy suffered from school bullying and parental violence. Hurtful words
-and teasing weighed heavily on him. Despite my constant encouragement and support, he
-often felt alone with his suffering."></p>
+<h3 data-fr="Les difficultés" data-en="The Struggles">Les difficultés</h3>
+<p data-fr="Malheureusement, Timothy a subi du harcèlement scolaire et des violences parentales. Il se sentait souvent seul malgré mon soutien."
+   data-en="Unfortunately, Timothy suffered from school bullying and parental violence. He often felt alone despite my support."></p>
 </div>
 
-<!-- Chapitre 4 -->
 <div class="chapter">
 <h3 data-fr="Le drame" data-en="The Tragedy">Le drame</h3>
-<p id="chapter4-text" data-fr="
-Le 28 octobre 2023, a seulement 11 ans, Timothy a pris la tragique decision de se suicider
-devant moi. Ce fut un moment d’une douleur indescriptible, un vide immense. Son depart a
-laisser un silence que rien ne peut combler."
-data-en="
-On October 28, 2023, at only 11 years old, Timothy made the tragic decision to take his own
-life in front of me. It was a moment of indescribable pain, a huge emptiness. His departure
-left a silence that nothing can fill."></p>
+<p data-fr="Le 28 octobre 2023, à 11 ans, Timothy s’est suicidé devant moi. Un moment d’une douleur indescriptible."
+   data-en="On October 28, 2023, at 11 years old, Timothy took his own life in front of me. An indescribable moment of pain."></p>
 </div>
 
-<!-- Chapitre 5 -->
 <div class="chapter">
 <h3 data-fr="Hommage" data-en="Tribute">Hommage</h3>
-<p id="chapter5-text" data-fr="
-Ce site est un hommage à Timothy. Il garde sa memoire vivante et permet à tous de se
-souvenir de sa lumière et de son sourire. Son courage, sa gentillesse et son ame resteront a
-jamais graver dans mon coeur."
-data-en="
-This site is a tribute to Timothy. It keeps his memory alive and allows everyone to remember
-his light and smile. His courage, kindness, and soul will forever be engraved in my
-heart."></p>
+<p data-fr="Ce site est un hommage à Timothy, pour garder sa mémoire vivante et partager sa lumière et son sourire."
+   data-en="This site is a tribute to Timothy, to keep his memory alive and share his light and smile."></p>
 </div>
+
 </section>
 
 <footer>© Alexis 2025 – Tous droits réservés</footer>
@@ -313,6 +278,11 @@ function setLanguage(lang){
         } else {
             el.textContent ? el.textContent=el.getAttribute("data-en") : el.placeholder=el.getAttribute("data-en");
         }
+    });
+
+    // Mettre à jour l'histoire
+    document.querySelectorAll(".chapter p").forEach(p=>{
+        p.textContent = (lang==="fr") ? p.getAttribute("data-fr") : p.getAttribute("data-en");
     });
 }
 function showFR(){setLanguage("fr");}
